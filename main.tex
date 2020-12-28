@@ -1,0 +1,121 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{psfig,epsfig,graphicx,epstopdf}
+\usepackage[UTF8]{ctex}
+\usepackage{url}
+\usepackage{IEEEtrantools}
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{float}
+
+% 由于论文一般比较长，为了方便查看，可以选择只编译 \includeonly{} 中的文件。
+%\includeonly{tex/abstract,tex/chapter1,tex/chapter2,tex/appendix,tex/references,tex/toc}
+
+\usepackage{indentfirst}
+\usepackage[normal,footnotesize]{caption2}%%normal表示标题文本的格式是不足一行居中，多于左对齐；small是指标题号（如图..，表..）的字体大小。
+\usepackage[sort]{cite}
+\usepackage[top=3.9cm,bottom=3.5cm,left=2.8cm,right=3cm,headheight=1.2cm,footskip=0.8cm]{geometry}
+\usepackage[colorlinks,linkcolor=black,anchorcolor=blue,citecolor=green]{hyperref}
+\usepackage{pdfpages} % 插入pdf
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% 为了区分中文句号“。”和数学符号“o”，一般将其转换成英文句点“．”。
+\catcode`\。=\active
+\newcommand{。}{．}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+%\textwidth=16.5cm
+%\textheight=21.8cm
+%\textwidth 14.3cm
+%\textheight 19.9cm
+%\oddsidemargin 1.2cm
+%\oddsidemargin 1.2cm
+%\evensidemargin 1.3cm
+%\topmargin 0.3cm
+%\headsep 25pt
+%\hoffset=-28pt
+%\voffset=-1.8cm
+\def\baselinestretch{1.25}
+\renewcommand{\theequation}%
+  {\arabic{section}.\arabic{equation}}
+  \renewcommand{\theequation}
+  {\arabic{section}.\arabic{equation}}
+\renewcommand{\thefigure}
+  {\arabic{section}.\arabic{figure}}
+\renewcommand{\thetable}
+  {\arabic{section}.\arabic{table}}
+
+
+\newcommand{\song}{\CJKfamily{song}} % 宋体 (Windows自带simsun.ttf)
+\newcommand{\fs}{\CJKfamily{fs}} % 仿宋体 (Windows自带simfs.ttf)
+\newcommand{\kai}{\CJKfamily{kai}} % 楷体 (Windows自带simkai.ttf)
+\newcommand{\hei}{\CJKfamily{hei}} % 黑体 (Windows自带simhei.ttf)
+\newcommand{\li}{\CJKfamily{li}} % 隶书 (Windows自带simli.ttf)
+\newcommand{\you}{\CJKfamily{you}} % 幼圆 (Windows自带simyou.ttf)
+
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\yichu}{\fontsize{32pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\yihao}{\fontsize{26pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont} % 字号设置
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont} % 字号设置
+%%%%%%%%%%%%%%%%%% 页眉与页脚 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr,graphicx}
+\newsavebox{\mygraphic}
+\sbox{\mygraphic}{\includegraphics{logo.eps}}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{\usebox{\mygraphic}}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[C]{---\thepage---}
+\renewcommand{\headrule}{%
+\makebox[0pt][l]{\rule[0\baselineskip]{\headwidth}{0pt}}%
+\rule[0\baselineskip]{\headwidth}{0pt} }
+
+ %\renewcommand{\footrulewidth}{0.1pt}
+ %\renewcommand{\headwidth}{\textwidth}
+
+
+\begin{document}
+\renewcommand{\refname}{\hei \sanhao 参考文献}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\
+\includepdf{ccnu-cover.pdf} % 华师论文封面，在 ccnu-cover.doc 中修改，然后另存为 pdf 格式，替换掉模板
+% 以下部分在 tex 文件夹中修改添加
+% 标题页与授权页若不方便使用电子签名，可以先打印出来，签名后，扫描成 pdf 文件，按上述方法插入 tex 中
+\include{tex/cover} % 标题页
+\include{tex/authorization} % 授权页
+\pagenumbering{roman}
+\include{tex/abstract} % 摘要
+\include{tex/toc} % 目录，需手动输入章节名和序号
+\pagenumbering{arabic}
+\include{tex/chapter1} % 第一章 引言
+\include{tex/chapter2} % 第二章 正文，若要增加其他章节，复制一份修改即可，注意更改章节序号。
+%\include{tex/chap3} % 第三章，以此类推
+\include{tex/conclusion} % 总结与展望，这里为第三章
+\include{tex/appendix} % 附录
+
+\newpage
+\label{bib}
+\renewcommand\refname{参考文献}
+\setlength{\baselineskip}{14pt}
+\bibliographystyle{unsrt}
+\bibliography{tex/references} % 注意是 BibTeX 格式，文件名为 references.bib
+
+\newpage
+\include{tex/work} % 在校期间发表的论文、科研成果等
+\newpage
+\include{tex/acknowlegement} % 致谢
+
+\end{document}
