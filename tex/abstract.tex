@@ -30,24 +30,26 @@
 具体步骤是：
 
 \begin{itemize}
-\item[1] 修改论文封面：编辑根目录中的 ccnu-cover.doc 文件，另存为 ccnu-cover.pdf，覆盖原有文件。
-\item[2] 打开 \verb!\include{/tex/}! 文件，按如下顺序进行排版生成 PDF 文件：XeLaTeX $\to$ BibTeX $\to$ XeLaTeX $\to$ XeLaTeX。
-\item[3] 论文写作：打开 tex 文件夹，修改相应文件（对应于论文的不同部分和章节。
-若要增加新的章节，复制一份 chapter2.tex，修改成 chapter3.tex，
-在 main.tex 中的 \verb!\include{tex/chapter3}! 下方添加 \verb!\include{tex/chapter3}!。以此类推。
-\item[4] 重复第二步，生成新的 PDF 文档。
+\item[1.] 修改论文封面：编辑根目录中的 \verb!ccnu-cover.doc! 文件，另存为 \verb!ccnu-cover.pdf!，覆盖原有文件。
+\item[2.] 打开 \verb!main.tex! 文件，按如下顺序进行排版生成 \verb!main.pdf! 文件：XeLaTeX $\to$ BibTeX $\to$ XeLaTeX $\to$ XeLaTeX。
+\item[3.] 论文写作：打开 tex 文件夹，修改相应文件（对应于论文的不同部分和章节。
+若要增加新的章节，复制一份 \verb!chapter2.tex!，修改成 \verb!chapter3.tex!，
+在 \verb!main.tex! 中的 \verb!\include{tex/chapter3}! 下方添加 \verb!\include{tex/chapter3}!。以此类推。
+\item[4.] 重复第二步，生成新的 \verb!main.pdf! 文件。
 \end{itemize}
 
-整体思路很简单，由于论文一般很长，放在一个文件里不好整理，
+整体思路很简单，
+由于论文一般很长，放在一个文件里不好整理，
 所以分成多个文件，最后导入同一个文件中编辑。
-根目录中的 \verb!\include{main.tex}! 就是主要文件，只需编译它即可。
-至于目录、引言、正文、参考文献等内容则分别放在 \verb!\include{/tex/}! 目录下，
-然后在 \verb!\include{main.tex}! 文件中通过 \verb!\include{\include}! 命令导入。
+根目录中的 \verb!main.tex! 就是主要文件，只需编译它即可。
+至于目录、引言、正文、参考文献等内容则分别放在 tex 目录下，
+然后在 \verb!main.tex! 文件中通过 \verb!\include{}! 命令导入。
 
-第二步中的 XeLaTeX 负责编译中文文本，BibTeX 是编译 \verb!\include{.bib}! 格式的参考文献。
-若是使用了论文管理软件，可以选择导出为 \verb!\include{.bib}! 文件，覆盖 \verb!\include{tex/references.bib}!
-或者在 \href{}{inSPIRE} 中搜索相关文献，在该文献下方的 cite 选项中选择 BibTeX 格式，
-复制到 \verb!\include{tex/references.bib}! 文件中。
+第二步中的 XeLaTeX 负责编译中文文本，BibTeX 是编译 \verb!.bib! 格式的参考文献。
+若是使用了论文管理软件，可以选择导出为 \verb!.BibTeX! 文件，
+覆盖 tex 文件夹下的 \verb!references.bib! 文件。
+或者自己搜索相关文献的 BibTeX 引用格式，
+将其复制到 tex 目录下的 \verb!references.bib! 文件中。
 通过 BibTeX 编译出参考文献之后就只需要选择 XeLaTeX 编译，除非增加了新的文献。
 
 \vspace{1cm} \noindent {\sihao \hei \textbf{关键词：}}华中师范大学；物理科学与技术学院；硕博士论文模板
